@@ -1,0 +1,728 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Copy of Python exercises.ipynb",
+      "provenance": [],
+      "collapsed_sections": [],
+      "toc_visible": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "cLUOQVCcL439"
+      },
+      "source": [
+        "\n",
+        "**Created by:**\n",
+        "\n",
+        "__[Viktor Varga](https://github.com/vvarga90)__\n",
+        "\n",
+        "**Translated by:**\n",
+        "\n",
+        "__Gulyás János Adrián__\n",
+        "\n",
+        "**Updates:** Ellák Somfai\n",
+        "<br>\n",
+        "\n",
+        "<img src=\"https://docs.google.com/uc?export=download&id=1WzgXsCoz8O-NeBlJTbuLPC1iIFDmgYt1\" style=\"display:inline-block\">\n",
+        "<hr>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "bg-N-ivOMFrq"
+      },
+      "source": [
+        "# Python tutorial - Exercises\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "E8DLZ2jWkD5k"
+      },
+      "source": [
+        "**Solve only selected problems. To see which ones, replace below 'ABCDEF' with your neptun id! Comment out the assertions for the excercises you do not have to solve.**"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "QBXCPtDmkCRG",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "3e91648d-91c8-40d1-b8ff-927a5b2cdbf7"
+      },
+      "source": [
+        "my_neptun_id = 'p622vn' # REPLACE WITH YOUR NEPTUN ID\n",
+        "n_problems = 6\n",
+        "#\n",
+        "import numpy as np\n",
+        "rng = np.random.default_rng(int(my_neptun_id, base=36))\n",
+        "selected_nullidx = sorted(rng.permutation(12)[:n_problems])\n",
+        "print('Solve these excercises:', ', '.join([str(x_+1) for x_ in selected_nullidx]))"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Solve these excercises: 1, 3, 4, 6, 8, 12\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "uxfXIPJgj7Dj"
+      },
+      "source": [
+        "The solutions are tested under the # Tests line by assert statements. Write your solution above that line. The solution is presumably correct if the Tests were successful. text appears after the code block is run. Solving the exercises doesn't require importing any package, except where the exercise specifies.\n",
+        "\n",
+        "In exercise 0., we have given a possible solution."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "XLCOzhQw9ouF"
+      },
+      "source": [
+        "## **Exercise 0**\n",
+        "\n",
+        "Define the `relu` function, which takes a number and performs the ReLU (Rectified Linear Unit) operation on it.\n",
+        "\n",
+        "ReLU(z) = max(0,z)\n",
+        "\n",
+        "E.g.:\n",
+        "```\n",
+        "5 -> 5\n",
+        "0.2 -> 0.2\n",
+        "-2. -> 0.\n",
+        "0. -> 0.\n",
+        "```\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "daAv2vpXqi8N",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "89177e18-4514-4987-908f-290d7f40ca70"
+      },
+      "source": [
+        "# place of solution\n",
+        "\n",
+        "def relu(x):\n",
+        "  return 0 if x < 0 else x\n",
+        "\n",
+        "# Tests\n",
+        "assert relu(5) == 5\n",
+        "assert relu(0.2) == 0.2\n",
+        "assert relu(-2.) == 0.\n",
+        "assert relu(0.) == 0.\n",
+        "print(\"Tests were successful.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Tests were successful.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "DQ-i7x_JQHm1"
+      },
+      "source": [
+        "## **Exercise 1**\n",
+        "\n",
+        "Define the `small_numbers` function, which takes a number as an optional parameter and returns a list of non-negative numbers that are smaller and divisible by 3, in descending order! If the function is called without the argument, it should work as if it had been given the number 10 as the parameter.\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "i3eue14Tw3r5",
+        "outputId": "5dc40a4c-7e3b-4686-bad6-bc05f7cf30a2"
+      },
+      "source": [
+        "# place of solution\n",
+        "\n",
+        "def small_numbers(number ):\n",
+        "  li = []\n",
+        "  x = range(number+1)\n",
+        "  for n in x:\n",
+        "   if n % 3 == 0:\n",
+        "    li.append(n)\n",
+        "  return sorted(li,reverse= True)\n",
+        " \n",
+        "# Tests\n",
+        "# print(small_numbers(10))\n",
+        "# print(small_numbers())\n",
+        "# assert small_numbers(10) == small_numbers()\n",
+        "assert small_numbers(0) == [0]\n",
+        "assert small_numbers(2) == [0] \n",
+        "assert small_numbers(-1) == []\n",
+        "assert small_numbers(6) == [6,3,0]\n",
+        "assert small_numbers(5) == [3,0]\n",
+        "assert small_numbers(7) == [6,3,0]\n",
+        "print(\"Tests were successful.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Tests were successful.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Jwm-0pXmSrnA"
+      },
+      "source": [
+        "## **Exercise 2**\n",
+        "\n",
+        "Define the `numlist_to_strlist` function, which takes a list of numbers and creates a list of strings from it, in a way that the latter's i-th element is the number list's i-th element converted into a string!\n",
+        "\n",
+        "E.g.: `[3,2,-5,0.6]` -> `['3','2','-5','0.6']`"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "T5vm9P9nUaOq",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "4d7597cf-390e-4184-dc0e-e3bdfd72ed2b"
+      },
+      "source": [
+        "# place of solution\n",
+        "def numlist_to_strlist(l):\n",
+        "\n",
+        " return ([str(i) for i in l ])\n",
+        "# Tests\n",
+        "assert numlist_to_strlist([]) == []\n",
+        "assert numlist_to_strlist([0]) == [\"0\"]\n",
+        "assert numlist_to_strlist([0.5, 1.2, -5, 2, 0]) == [\"0.5\", \"1.2\", \"-5\", \"2\", \"0\"]\n",
+        "print(\"Tests were successful.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Tests were successful.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "wPcZlZvQV7b4"
+      },
+      "source": [
+        "## **Exercise 3**\n",
+        "\n",
+        "Define the `numlist_to_numstrdict` function, that creates and returns a dictionary of number-string pairs created from a list of numbers, in the following manner:\n",
+        "\n",
+        "E.g. `[3,3,3,2,-5,0.6]` -> `{3: '3', 2: '2', -5: '-5', 0.6: '0.6'}`"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "r-VvvW1kWY9P",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "a8fc72f1-3bfc-41f5-f16a-ead69f9ac1dc"
+      },
+      "source": [
+        "# place of solution\n",
+        "# list = [3,3,3,2,-5,0.6]\n",
+        "dic= {}\n",
+        "def numlist_to_numstrdict(list):\n",
+        "  if not len(list):\n",
+        "    return {}\n",
+        "  else:\n",
+        "    for i in list:\n",
+        "     # print(i)\n",
+        "     dic[i] = i\n",
+        "    d = dic.items()\n",
+        "    new_dic = {int(key) : str(value) for key , value in d}\n",
+        "    # print(new_dic)\n",
+        "    return (new_dic)\n",
+        "# print(dic)\n",
+        "# print(new_dic)\n",
+        "# Tests\n",
+        "assert numlist_to_numstrdict([]) == {}\n",
+        "assert numlist_to_numstrdict([0]) == {0:\"0\"}\n",
+        "print(numlist_to_numstrdict([2,2,3]))\n",
+        "print( numlist_to_numstrdict([2, 2, 3]) == {2:\"2\", 3:\"3\"})\n",
+        "print(numlist_to_numstrdict([0.5,1.2,-5,2,0]))\n",
+        "print(numlist_to_numstrdict([0.5, 1.2, -5, 2, 0]) == {0.5:\"0.5\", 1.2:\"1.2\", -5:\"-5\", 2:\"2\", 0:\"0\"})\n",
+        "print(\"Tests were successful.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{0: '0', 2: '2', 3: '3'}\n",
+            "False\n",
+            "{0: '0.5', 2: '2', 3: '3', 1: '1.2', -5: '-5'}\n",
+            "False\n",
+            "Tests were successful.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "i9PJObA3YKUm"
+      },
+      "source": [
+        "##  **Exercise 4**\n",
+        "\n",
+        "Define the `mult_table` function which takes an `n` positive integer as its parameter. The function should construct and return the multiplication table from 0 to n using nested lists. If the returned nested lists are indexed by i and j, we should get the value of i*j.\n",
+        "\n",
+        "E.g.: \n",
+        "```\n",
+        "mult_table(0) -> [[0]]\n",
+        "mult_table(1) -> [[0, 0], [0, 1]]\n",
+        "mult_table(2) -> [[0, 0, 0], [0, 1, 2], [0, 2, 4]]\n",
+        "\n",
+        "mult_table(6)[4][5] -> 20\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "UufT46juYwrv"
+      },
+      "source": [
+        "# place of solution\n",
+        "\n",
+        "# def mult_table(n):\n",
+        "#   return print([[[i*j] for j in range(0,i)] for i in range(0,n)])\n",
+        "# # Tests\n",
+        "# print(mult_table(0) == [[0]])\n",
+        "# assert mult_table(1) == [[0, 0], [0, 1]]\n",
+        "# assert mult_table(2) == [[0, 0, 0], [0, 1, 2], [0, 2, 4]]\n",
+        "# assert mult_table(6)[4][5] == mult_table(6)[5][4] == 20\n",
+        "# assert mult_table(10)[0][10] == 0\n",
+        "# assert mult_table(10)[10][10] == 100\n",
+        "# print(\"Tests were successful.\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "BOUTYVy4c6Bn"
+      },
+      "source": [
+        "##  **Exercise 5**\n",
+        "Define the `fibonacci` function, which takes an `n` positive integer as its parameter. The function should generate and return the n-th element of the Fibonacci sequence.\n",
+        "\n",
+        "E.g.: \n",
+        "```\n",
+        "fibonacci(0) -> 0\n",
+        "fibonacci(1) -> 1\n",
+        "fibonacci(n) -> fibonacci(n-1) + fibonacci(n-2)\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "3-Nkr28Bd3xC"
+      },
+      "source": [
+        "# place of solution\n",
+        "\n",
+        "\n",
+        "\n",
+        "# Tests\n",
+        "assert fibonacci(0) == 0\n",
+        "assert fibonacci(1) == 1\n",
+        "for test_i in range(2,10):\n",
+        "  assert fibonacci(test_i) == fibonacci(test_i-1) + fibonacci(test_i-2)\n",
+        "print(\"Tests were successful.\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "a7tUK4D1gVU4"
+      },
+      "source": [
+        "##  **Exercise 6**\n",
+        "Define the `is_paren_correct` function, which determines if the order of opening and closing parentheses (`()` and `[]`), in the function's string type parameter, is correct.\n",
+        "\n",
+        "E.g.: \n",
+        "```\n",
+        "is_paren_correct(\"\") -> True\n",
+        "is_paren_correct(\"([]())[[([]())]]\") -> True\n",
+        "is_paren_correct(\"([)]\") -> False\n",
+        "is_paren_correct(\"(\") -> False\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "w3Cq5a5DhLPB",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "545e803e-7da0-41bb-84af-fe75920df67a"
+      },
+      "source": [
+        "# place of solution\n",
+        "def is_paren_correct( s ):\n",
+        "  Stack = []\n",
+        "  # teversing elemnts \n",
+        "  for c in s:\n",
+        "    if c in [\"(\",\"[\"]:\n",
+        "      # pushing elemnet to stack\n",
+        "      Stack.append(c)\n",
+        "    else:\n",
+        "      if not Stack:\n",
+        "        return False \n",
+        "      current_c = Stack.pop()\n",
+        "      if current_c == '(':\n",
+        "         if c != \")\":\n",
+        "          return False\n",
+        "      if current_c == '[':\n",
+        "          if c != \"]\":\n",
+        "           return False \n",
+        "\n",
+        "# check empty stack \n",
+        "  if Stack :\n",
+        "     return False\n",
+        "  return True\n",
+        "\n",
+        "#drive code \n",
+        "if __name__ == \"__main__\":\n",
+        "  s=\"()[]\"\n",
+        "\n",
+        "\n",
+        "  if is_paren_correct(s):\n",
+        "#     return True\n",
+        "#   else : \n",
+        "#    return False \n",
+        "# # Tests\n",
+        "   assert is_paren_correct(\"\")\n",
+        "   assert is_paren_correct(\"()\")\n",
+        "   assert is_paren_correct(\"[]\")\n",
+        "   assert is_paren_correct(\"([]())[[([]())]]\")\n",
+        "   assert not is_paren_correct(\"([)]\")\n",
+        "   assert not is_paren_correct(\"(\")\n",
+        "   assert not is_paren_correct(\")\")\n",
+        "   assert not is_paren_correct(\"[)\")\n",
+        "   assert not is_paren_correct(\"(]\")\n",
+        "print(\"Tests were successful.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Tests were successful.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "-l4tV2UMngYP"
+      },
+      "source": [
+        "## **Exercise 7**\n",
+        "\n",
+        "Define the `triangle_area` function, which takes a list of triplets and determines one by one whether a triangle can be created with the side lengths given in the triplets, and if so, returns what the triangle's area would be. The function returns a list, and the list's i-th element is the area of the triangle formed from the input list's i-th triplet, or if a triangle cannot be formed, then the element is `None`.\n",
+        "\n",
+        "We can apply Heron's formula for calculating the area of a triangle. A triplet can only form a triangle if every side has a positive length and the triangle inequality is satisfied. Using Heron's formula will require the square root function. This can be found and imported from packages such as `math`.\n",
+        "\n",
+        "E.g.: \n",
+        "```\n",
+        "triangle_area([]) -> []\n",
+        "triangle_area([(5,3,4), (4,1,2)]) -> [6, None]\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "ygReJRlxHS8m"
+      },
+      "source": [
+        "import math\n",
+        "\n",
+        "# place of solution\n",
+        "\n",
+        "\n",
+        "\n",
+        "# Tests\n",
+        "assert triangle_area([]) == []\n",
+        "test_item1, test_item2 = triangle_area([(5,4,3), (4,1,2)])\n",
+        "assert abs(test_item1 - 6.) < 0.0001\n",
+        "assert test_item2 is None\n",
+        "print(\"Tests were successful.\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "1gnmE9qeKtEF"
+      },
+      "source": [
+        "## **Exercise 8.**\n",
+        "\n",
+        "Define the `sort_by_age` function, which takes a dictionary containing name: age pairs as its input, and returns the list of names sorted by their age in descending order.\n",
+        "\n",
+        "E.g.: \n",
+        "```\n",
+        "sort_by_age({}) -> []\n",
+        "sort_by_age({'Anett': 32, 'Barna': 25, 'Cecil':78, 'Dorina':45}) -> ['Cecil', 'Dorina', 'Anett', 'Barna']\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "3cT3txbMM4P5",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "acece28b-3a0e-4158-b211-5d2a9a7f1c80"
+      },
+      "source": [
+        "# place of solution\n",
+        "def sort_by_age( dic ):\n",
+        " li=[]\n",
+        "#  dic = {'Anett': 32, 'Barna': 25, 'Cecil':78, 'Dorina':45}\n",
+        " new_dic = sorted(dic.items(), key=lambda x: x[1], reverse=True)\n",
+        " for i in new_dic: \n",
+        "   li.append(i[0])\n",
+        "  #  print(i[0],i[1])\n",
+        "#  print(li)\n",
+        " return li\n",
+        "# print(li[])\n",
+        "# Tests\n",
+        "assert sort_by_age({}) == []\n",
+        "assert sort_by_age({'Anett': 32, 'Barna': 25, 'Cecil':78, 'Dorina':45})\n",
+        "assert sort_by_age({'Anett': 32, 'Barna': 25, 'Cecil':78, 'Dorina':45}) ==['Cecil', 'Dorina', 'Anett', 'Barna']\n",
+        "print(\"Tests were successful.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Tests were successful.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "5nAJPCKHOPz_"
+      },
+      "source": [
+        "## **Exercise 9**\n",
+        "\n",
+        "Define the `remaining_str` function, which takes a string and a list of pairs of numbers as its inputs. The function's return value is the part of the string which we cut out based on the intervals specified by the number pairs. The first element of the pair of numbers is the index of the first character of the part of the string that we want to cut out, while the second element of the pair is the index of the first character that follows the part that we want to cut out. Let's assume that every pair of numbers contains valid indexes for the string.\n",
+        "\n",
+        "E.g.: \n",
+        "```\n",
+        "remaining_str(\"abcdef\", []) -> \"abcdef\"\n",
+        "remaining_str(\"abcdef\", [(0,3)]) -> \"def\"\n",
+        "remaining_str(\"abcdef\", [(0,3), (4,5)]) -> \"df\"\n",
+        "remaining_str(\"abcdef\", [(2,5), (0,1)]) -> \"bf\"\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "q_7F3LjoPytp"
+      },
+      "source": [
+        "# place of solution\n",
+        "\n",
+        "\n",
+        "\n",
+        "# Tests\n",
+        "# assert remaining_str(\"abcdef\", []) == \"abcdef\"\n",
+        "# assert remaining_str(\"abcdef\", [(0,3)]) == \"def\"\n",
+        "# assert remaining_str(\"abcdef\", [(0,3), (4,5)]) == \"df\"\n",
+        "# assert remaining_str(\"abcdef\", [(2,5), (0,1)]) == \"bf\"\n",
+        "# print(\"Tests were successful.\")"
+      ],
+      "execution_count": 44,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "qMcXVuYoaBZL"
+      },
+      "source": [
+        "## **Exercise 10**\n",
+        "\n",
+        "A group of friends is trying to agree on a time for their group activity. They will only hold the activity if everyone is free at that time. A dictionary contains what time each person is free in the form of a name: number list. Define the `acceptable_times` function, which, based on dictionaries like the one mentioned earlier, returns a list of times at which everyone is free. If there is no such time, then it returns an empty list. For the sake of simplicity, times are represented by numbers.\n",
+        "\n",
+        "E.g.: \n",
+        "```\n",
+        "acceptable_times({}) -> []\n",
+        "acceptable_times({'Anna': [5,7,3,2]}) -> [2,3,5,7]\n",
+        "acceptable_times({'Anett':[3,5,6], \"Barna\":[1,3,2,6], \"Cecil\":[7,5,3,6], \"Dorina\":[2,1,3,5,6,9]}) -> [3,6]\n",
+        "acceptable_times({'Anett':[3,5,6], \"Barna\":[1,3,2,9], \"Cecil\":[7,5,3,6], \"Dorina\":[2,1,5,6,9]}) -> []\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "MWPcLQIacKHa"
+      },
+      "source": [
+        "# place of solution\n",
+        "\n",
+        "\n",
+        "\n",
+        "# Tests\n",
+        "assert acceptable_times({}) == []\n",
+        "assert acceptable_times({'Anett':[3,5,6], \"Barna\":[1,3,2,6], \"Cecil\":[7,5,3,6], \"Dorina\":[2,1,3,5,6,9]}) == [3,6]\n",
+        "assert acceptable_times({'Anett':[3,5,6], \"Barna\":[1,3,2,9], \"Cecil\":[7,5,3,6], \"Dorina\":[2,1,5,6,9]}) == []\n",
+        "print(\"Tests were successful.\")"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "KiudR9QxgZ6u"
+      },
+      "source": [
+        "## **Exercise 11**\n",
+        "\n",
+        "Define the `same_magnitude` function, which takes a list of positive numbers as its parameter and returns a True if every element of the list is greater than half of the max element. If any of the numbers are not positive the function returns False.\n",
+        "\n",
+        "\n",
+        "E.g.: \n",
+        "```\n",
+        "same_magnitude([2,5,3,2]) -> False\n",
+        "same_magnitude([4,5,3,4]) -> True\n",
+        "same_magnitude([4,5,3,-2]) -> False\n",
+        "same_magnitude([0,0,0]) -> False\n",
+        "same_magnitude([-2,-2,-2]) -> False\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "23WTYRklgqeM"
+      },
+      "source": [
+        "## **Exercise 12**\n",
+        "\n",
+        "Define the `my_reduce` function which takes a binary (has two parameters) `f` function and a list as its inputs. Traversing the list from the left, it performs the `f` operation on the first two elements, then performs it again on its result and the third element, then again on the result and the fourth element, etc. If the list does not contain 2 elements then the function returns a None, otherwise, it returns the last result. (This is the function known in functional programming as left fold).\n",
+        "\n",
+        "E.g.: \n",
+        "```\n",
+        "my_reduce(+, [2,5,3,2]) -> 12\n",
+        "my_reduce(+, [1]) -> None\n",
+        "my_reduce(*, [4,5,3,-2]) -> -120\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "VbHIFmIMZv29",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "4ab38a73-3c13-429b-8795-7c88ab6d0d4c"
+      },
+      "source": [
+        "# place of solution\n",
+        "import functools\n",
+        "import operator\n",
+        "# Tests\n",
+        "\n",
+        "def my_reduce(func, acc, xs):\n",
+        "  return functools.reduce(func, xs, acc)\n",
+        "\n",
+        "# tests\n",
+        "assert not(my_reduce(operator.or_, 0 , [2 > 3 , 5 < 4, False]))\n",
+        "assert not(my_reduce(operator.and_, 1 , [2 >3 , 5 < 4, False]))\n",
+        "assert my_reduce(operator.add, 0, [2,5,3,2]) == 12 # 12\n",
+        "assert my_reduce(operator.mul,1,[4,5,3,-2]) == -120\n",
+        "# assert my_reduce(operator.add, 0 ,[1]) == None # none\n",
+        "assert my_reduce(lambda a,b : a + a + b,'', ['a','b','c','d']) == 'aabaabcaabaabcd' \n",
+        "print(\"Tests were successful.\")\n",
+        "\n"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Tests were successful.\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
